@@ -1,4 +1,5 @@
-<div>
-    <h3>{{ task.name }} <fa-icon [icon]="faTrash"></fa-icon></h3>
+<div [ngClass]="{reminder: task.reminder}" (dblclick) = "onToggle(task)">
+    <fa-icon (click)="onToggle(task)" [icon]="faTrash"></fa-icon>
+    <h3>{{ task.name }} <fa-icon (click)="onDelete(task)" [icon]="faTrash"></fa-icon></h3>
     <p>{{ task.priority }}</p>
 </div>

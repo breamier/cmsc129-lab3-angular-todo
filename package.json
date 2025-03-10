@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:my-to-do": "node dist/my-to-do/server/server.mjs"
+    "serve:ssr:my-to-do": "node dist/my-to-do/server/server.mjs",
+    "server": "json-server --watch db.json --port 5000"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@fortawesome/angular-fontawesome": "^1.0.0",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "express": "^4.18.2",
+    "json-server": "^1.0.0-beta.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
