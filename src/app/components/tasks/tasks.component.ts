@@ -13,11 +13,23 @@ import { AddTaskComponent } from "../add-task/add-task.component";
 })
 export class TasksComponent {
   tasks: Task[] = [];
+  taskToEdit: Task | null = null;
 
   constructor(private taskService: TaskService){}
 
   ngOnInit(): void{
     this.taskService.getTasks().subscribe((tasks) => this.tasks = tasks);
+  }
+
+  editTask(task: Task){
+    this.taskToEdit = {...task};
+  }
+
+  updateTask(task: Task){
+    this.taskService.updateTaskReminder(task).subscribe(() => {
+      this.tasks = this.tasks.map((t) => t.id === task.id ? task : t);
+      this.taskToEdit = null;
+    })
   }
 
   deleteTask(task: Task){
