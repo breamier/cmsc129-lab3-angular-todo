@@ -1,7 +1,7 @@
 <form *ngIf="showAddTask" (ngSubmit)="onSubmit()">
     <div class="form-control">
         <label for="text">Task</label>
-        <input type="text" name="text" [(ngModel)]="text" id="text" placeholder="Add Task"/>
+        <input type="text" name="text" [(ngModel)]="text" id="text" placeholder="Add Task" required/>
     </div>
     
     <mat-form-field class="example-full-width">
@@ -16,12 +16,6 @@
         <ngx-mat-timepicker-toggle matSuffix [for]="timePicker"></ngx-mat-timepicker-toggle>
         <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
     </mat-form-field>
-    
-
-    <!-- <div class="form-control">
-        <label for="reminder">Set Reminder</label>
-        <input type="checkbox" name="reminder" [(ngModel)]="reminder" id="reminder"/>
-    </div> -->
     
     <div>
         <label for="priority">Priority</label>
@@ -38,5 +32,9 @@
             
         </div>
     </div>
-    <input type="submit" value="Save Task" class="btn">
+
+    <app-button type="submit" [color]="'blue'" [text]="taskToEdit ? 'Update Task': 'Add Task'">
+
+    </app-button>
+
 </form>

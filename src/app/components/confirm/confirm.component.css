@@ -1,0 +1,12 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+[mat-dialog-actions] {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    overflow: hidden;
+}
