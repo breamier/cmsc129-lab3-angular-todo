@@ -1,8 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Task } from '../../Task';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-task-item',
   imports: [FontAwesomeModule, CommonModule],
@@ -14,6 +15,8 @@ export class TaskItemComponent implements OnInit{
   @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
   @Output() onToggleReminder: EventEmitter<Task> = new EventEmitter();
   faTrash = faTrash;
+  faCheckSquare = faCheckSquare;
+  faSquare = faSquare;
 
   constructor(){}
 
