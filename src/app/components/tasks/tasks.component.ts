@@ -4,6 +4,7 @@ import { TaskService } from '../../services/task.service';
 import { CommonModule } from '@angular/common';
 import { TaskItemComponent } from "../task-item/task-item.component";
 import { AddTaskComponent } from "../add-task/add-task.component";
+
 @Component({
   selector: 'app-tasks',
   imports: [CommonModule, TaskItemComponent, AddTaskComponent],

@@ -3,6 +3,7 @@ import { Task } from '../../Task';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrash, faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
+import { DialogService } from '../../services/dialog.service';
 
 @Component({
   selector: 'app-task-item',
@@ -18,7 +19,7 @@ export class TaskItemComponent implements OnInit{
   faCheckSquare = faCheckSquare;
   faSquare = faSquare;
 
-  constructor(){}
+  constructor(private dialogService: DialogService){}
 
   ngOnInit(): void {
       
@@ -32,4 +33,11 @@ export class TaskItemComponent implements OnInit{
     this.onToggleReminder.emit(task);
   }
 
+  openDialog(task: Task){
+    this.dialogService.confirmDialog().subscribe((confirmed) => {
+      if(confirmed){
+        this.onDeleteTask.emit(task);
+      }
+    });
+  }
 }
