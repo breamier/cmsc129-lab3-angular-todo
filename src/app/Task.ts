@@ -5,6 +5,7 @@ export interface Task {
     name: string,
     dateCreated: string,
     dueDate: string,
-    reminder: boolean,
+    dueTime: string;
+    isDone: boolean,
     priority: string,
 }

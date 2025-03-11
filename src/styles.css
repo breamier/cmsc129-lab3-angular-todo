@@ -17,3 +17,5 @@ body{
     color: white;
     border-radius: 30px;
 }
+
+html, body { height: 100%; }

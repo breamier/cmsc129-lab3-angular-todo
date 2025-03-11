@@ -3,13 +3,40 @@
         <label for="text">Task</label>
         <input type="text" name="text" [(ngModel)]="text" id="text" placeholder="Add Task"/>
     </div>
-    <div class="form-control">
-        <label for="day">Day</label>
-        <input type="text" name="day" [(ngModel)]="day" id="day" placeholder="Add Day" />
-    </div>
-    <div class="form-control">
+    
+    <mat-form-field class="example-full-width">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [(ngModel)]="day" name="day" [min]="minDate" [matDatepicker]="picker" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput [(ngModel)]="time" name="time" [ngxMatTimepicker]="timePicker">
+        <ngx-mat-timepicker-toggle matSuffix [for]="timePicker"></ngx-mat-timepicker-toggle>
+        <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
+    </mat-form-field>
+    
+
+    <!-- <div class="form-control">
         <label for="reminder">Set Reminder</label>
         <input type="checkbox" name="reminder" [(ngModel)]="reminder" id="reminder"/>
+    </div> -->
+    
+    <div>
+        <label for="priority">Priority</label>
+        <div>
+            <label>
+                <input type="radio" name="priority" [(ngModel)]="priority" value="low" />Low
+            </label>
+            <label>
+                <input type="radio" name="priority" [(ngModel)]="priority" value="mid" />Mid
+            </label>
+            <label>
+                <input type="radio" name="priority" [(ngModel)]="priority" value="high" />High
+            </label>
+            
+        </div>
     </div>
     <input type="submit" value="Save Task" class="btn">
 </form>
