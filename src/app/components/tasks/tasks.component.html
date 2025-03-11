@@ -1,4 +1,14 @@
 <app-add-task [taskToEdit]="taskToEdit" (onAddTask)="addTask($event)" (onUpdateTask)="updateTask($event)"></app-add-task>
+
+<select id="sort" (change)="changeSort($event)">
+    <option value="dateCreatedAsc">Date Added - Ascending</option>
+    <option value="dateCreatedDesc">Date Added - Descending</option>
+    <option value="dueDateEarly">Due Date - Earliest</option>
+    <option value="dueDateLate">Due Date - Latest</option>
+    <option value="priorityLow">Priority - Least</option>
+    <option value="priorityHigh">Priority - Highest</option>
+</select>
+
 <app-task-item *ngFor="let task of tasks" 
 [task]="task" 
 (onEditTask)="editTask(task)"
