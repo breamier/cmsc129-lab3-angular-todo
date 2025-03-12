@@ -34,6 +34,7 @@ export class AddTaskComponent implements OnInit{
 
   constructor(private uiService: UiService){
     this.subscription = this.uiService.onToggle().subscribe((value) => {this.showAddTask = value});
+    this.subscription = this.uiService.onCancel().subscribe(() => {this.resetForm();});
   }
 
   ngOnInit(): void {}
@@ -52,6 +53,14 @@ export class AddTaskComponent implements OnInit{
   onSubmit(){
     if(!this.text.trim()){
       alert('Please add a task');
+      return;
+    }
+    if(!this.day){
+      alert('Please add a date');
+      return;
+    }
+    if(!this.time){
+      alert('Please add a time');
       return;
     }
 
@@ -79,10 +88,14 @@ export class AddTaskComponent implements OnInit{
       this.onAddTask.emit(newTask);
     }
 
-    this.text = '';
-    this.day = '';
-    this.priority = 'low';
-    this.time = '';
-    this.taskToEdit = null;
+    this.resetForm();
   }
+
+  resetForm() {
+  this.text = '';
+  this.day = '';
+  this.time = '';
+  this.priority = 'low';
+  this.taskToEdit = null;
+}
 }

@@ -30,6 +30,7 @@ export class TasksComponent {
   updateTask(task: Task){
     this.taskService.updateTaskReminder(task).subscribe(() => {
       this.tasks = this.tasks.map((t) => t.id === task.id ? task : t);
+      this.sortTasks();
       this.taskToEdit = null;
     })
   }
@@ -42,11 +43,13 @@ export class TasksComponent {
 
     toast.onAction().subscribe(() => {
       this.tasks.push(task);
+      this.sortTasks();
     });
 
     setTimeout(() => {
       if(!this.tasks.includes(task)) {
         this.taskService.deleteTask(task).subscribe();
+        this.sortTasks();
       }
     }, 3000);
     
@@ -55,24 +58,30 @@ export class TasksComponent {
 
   addTask(task: Task){
     this.taskService.addTask(task).subscribe((task) => this.tasks.push(task));
+    this.sortTasks();
   }
 
   sortTasks(){
     const priorityOrder = { high: 1, mid: 2, low: 3 };
     this.tasks = [...this.tasks].sort((a,b) => {
+
+      if(a.isDone !== b.isDone){
+        return a.isDone ? 1: -1;
+      }
+
       switch(this.sortBy){
-        case 'dateCreatedAsc': 
-          return new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime();
+        case 'dateCreatedDesc': 
+          return new Date(a.dateCreated).getTime() - new Date(b.dateCreated).getTime();
         case 'dueDateEarly':
           return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
         case 'priorityHigh':
           return priorityOrder[a.priority as 'high' | 'mid' | 'low'] - priorityOrder[b.priority as 'high' | 'mid' | 'low'];
         case 'priorityLow':
           return priorityOrder[b.priority as 'high' | 'mid' | 'low'] - priorityOrder[a.priority as 'high' | 'mid' | 'low'];
-        case 'dateCreatedDesc':
-          return new Date(a.dateCreated).getTime() - new Date(b.dateCreated).getTime();
+        case 'dateCreatedAsc':
+          return new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime();
         case 'dueDateLate':
-          return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+          return new Date(b.dueDate).getTime() - new Date(a.dueDate).getTime();
 
         default:
           return 0;
@@ -89,6 +98,6 @@ export class TasksComponent {
   toggleReminder(task: Task){
     task.isDone = !task.isDone;
     this.taskService.updateTaskReminder(task).subscribe();
-
+    this.sortTasks();
   }
 }
