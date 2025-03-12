@@ -1,7 +1,83 @@
-fa-icon{
-    color: green;
+
+.action{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.reminder{
-    border-right: 5px solid green;
+fa-icon{
+    color: black;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.task{
+    background-color: rgb(255, 254, 254);
+    margin: 10px;
+    padding: 10px;
+    border-bottom: 2px solid gray;
+
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5),
+            inset 2px 2px 5px rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease-in-out, transform 0.2s;
+}
+
+.task:hover {
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.6),
+        inset 3px 3px 6px rgba(255, 255, 255, 0.4);
+    transform: translateY(-5px);
+}
+
+.task.done{
+    border-left: 5px solid green;
+}
+
+.task.notdone{
+    border-left: 5px solid grey;
+}
+
+.task .task-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.subtitle{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-left: 35px;
+    font-size: 15px;
+}
+
+.subtitle .action{
+    color: gray;
+    font-size: 12px;
+}
+
+.subtitle fa-icon{
+    color: gray;
+}
+
+.prio{
+    width: 12%;
+    height: 8%;
+    padding: 5px 5px;
+    border-radius: 5px;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+}
+
+.selected{
+    color: green;
+    transform: scale(1.2);
+    transition: all 0.2s ease-in-out;
+}
+
+.selectedText{
+    text-decoration: line-through;
+    color: gray;
+    transition: all 0.2s ease-in-out;
 }

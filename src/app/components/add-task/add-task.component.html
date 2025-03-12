@@ -1,40 +1,60 @@
 <form *ngIf="showAddTask" (ngSubmit)="onSubmit()">
+    <h3 class="form-title">{{ taskToEdit ? 'Edit Task': 'Add Task' }}</h3>
+    
     <div class="form-control">
         <label for="text">Task</label>
-        <input type="text" name="text" [(ngModel)]="text" id="text" placeholder="Add Task" required/>
+        <input type="text" name="text" [(ngModel)]="text" id="text" placeholder="Enter Task Name" required/>
+    </div>
+
+    <div class="material">
+        <div>
+            <label for="day">Due Date</label>
+            <mat-form-field>
+                <mat-label>Choose a date</mat-label>
+                <input matInput [(ngModel)]="day" name="day" [min]="minDate" [matDatepicker]="picker"  />
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+            
+        
+        <div>
+            <label for="time">Time</label>
+            <mat-form-field>
+                <mat-label>Choose a time</mat-label>
+                <input matInput [(ngModel)]="time" name="time" [ngxMatTimepicker]="timePicker" />
+                <ngx-mat-timepicker-toggle matSuffix [for]="timePicker"></ngx-mat-timepicker-toggle>
+                <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
+            </mat-form-field>
+        </div>
+            
     </div>
     
-    <mat-form-field class="example-full-width">
-        <mat-label>Choose a date</mat-label>
-        <input matInput [(ngModel)]="day" name="day" [min]="minDate" [matDatepicker]="picker" />
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field>
-        <input matInput [(ngModel)]="time" name="time" [ngxMatTimepicker]="timePicker">
-        <ngx-mat-timepicker-toggle matSuffix [for]="timePicker"></ngx-mat-timepicker-toggle>
-        <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
-    </mat-form-field>
     
-    <div>
-        <label for="priority">Priority</label>
-        <div>
-            <label>
-                <input type="radio" name="priority" [(ngModel)]="priority" value="low" />Low
+    <label for="priority">Priority</label>
+    <div class="form-priority">
+        
+            <label class="radio-label low">
+                <input type="radio" name="priority" [(ngModel)]="priority" value="low" />
+                <span>Low</span>
             </label>
-            <label>
-                <input type="radio" name="priority" [(ngModel)]="priority" value="mid" />Mid
+            <label class="radio-label mid">
+                <input type="radio" name="priority" [(ngModel)]="priority" value="mid" />
+                <span>Mid</span>
             </label>
-            <label>
-                <input type="radio" name="priority" [(ngModel)]="priority" value="high" />High
+            <label class="radio-label high">
+                <input type="radio" name="priority" [(ngModel)]="priority" value="high" />
+                <span>High</span>
             </label>
             
-        </div>
     </div>
 
-    <app-button type="submit" [color]="'blue'" [text]="taskToEdit ? 'Update Task': 'Add Task'">
-
-    </app-button>
+    <div class="button-container">
+        <app-button type="submit" [color]="'green'" [text]="taskToEdit ? 'Confirm Changes': 'Add Task'">
+        </app-button>
+    </div>
+    
 
 </form>
+
+<hr class="divider">

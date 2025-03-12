@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Task } from '../../Task';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faTrash, faCheckSquare, faSquare, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faCheckSquare, faSquare, faEdit, faClock, faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
 import { DialogService } from '../../services/dialog.service';
 import { UiService } from '../../services/ui.service';
@@ -22,6 +22,8 @@ export class TaskItemComponent implements OnInit{
   faEdit = faEdit;
   faCheckSquare = faCheckSquare;
   faSquare = faSquare;
+  faClock = faClock;
+  faCalendar = faCalendar;
   showEditTask: boolean = false;
   subscription: Subscription;
 
@@ -56,5 +58,14 @@ export class TaskItemComponent implements OnInit{
         this.onDeleteTask.emit(task);
       }
     });
+  }
+
+  getPriorityColor(priority: string): string{
+    switch(priority.toLowerCase()){
+      case 'high': return 'red';
+      case 'mid': return 'orange';
+      case 'low': return 'green';
+      default: return 'gray';
+    }
   }
 }

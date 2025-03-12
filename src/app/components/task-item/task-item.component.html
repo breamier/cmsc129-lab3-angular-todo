@@ -1,7 +1,30 @@
-<div [ngClass]="{reminder: task.isDone}" (dblclick) = "onToggle(task)">
-    <fa-icon (click)="onToggle(task)" [icon]="task.isDone ? faCheckSquare : faSquare"></fa-icon>
-    <!-- <h3>{{ task.name }} <fa-icon (click)="onDelete(task)" [icon]="faTrash"></fa-icon></h3> -->
-    <h3>{{ task.name }} <fa-icon (click)="editTask()" [icon]="faEdit"></fa-icon><fa-icon (click)="openDialog(task)" [icon]="faTrash"></fa-icon></h3>
-
-    <p>{{ task.priority }}</p>
+<div [ngClass]="{ 'task': true, 'done': task.isDone, 'notdone': !task.isDone }">
+    
+    <div class="task-container">
+        <div class="action">
+            <fa-icon [ngClass]="{ 'selected': task.isDone }" (click)="onToggle(task)" [icon]="task.isDone ? faCheckSquare : faSquare"></fa-icon>
+            <h3 [ngClass]="{ 'selectedText': task.isDone }">
+                {{ task.name }}
+            </h3>
+        </div>
+        
+        <div class="action">
+            <fa-icon (click)="editTask()" [icon]="faEdit"></fa-icon>
+            <fa-icon (click)="openDialog(task)" [icon]="faTrash" [ngStyle]="{color:'red'}"></fa-icon>
+        </div>
+        
+    </div>
+    <div class="subtitle">
+        <p class="prio" [ngStyle]="{ 'background-color': getPriorityColor(task.priority)}">{{ task.priority }}</p>
+        <div class="action">
+            <fa-icon [icon]="faClock"></fa-icon>
+            <p>{{task.dueTime}}</p>
+        </div>
+        <div class="action">
+            <fa-icon [icon]="faCalendar"></fa-icon>
+            <p>{{ task.dueDate | date: 'MMMM d, y'}}</p>
+        </div>
+    </div>
+    
+    
 </div>
