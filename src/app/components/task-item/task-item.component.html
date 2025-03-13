@@ -23,8 +23,9 @@
         <div class="action">
             <fa-icon [icon]="faCalendar"></fa-icon>
             <p>{{ task.dueDate | date: 'MMMM d, y'}}</p>
-        </div>
+        </div>  
     </div>
+    <p class="hint">Created: {{ task.dateCreated | date: 'MMMM d, y'}}</p>
     
     
 </div>

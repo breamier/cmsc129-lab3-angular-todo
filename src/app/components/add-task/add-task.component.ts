@@ -50,6 +50,10 @@ export class AddTaskComponent implements OnInit{
     }
   }
 
+  toggleAddTask(){
+    this.uiService.toggleAddTask();
+  }
+
   onSubmit(){
     if(!this.text.trim()){
       alert('Please add a task');
@@ -89,13 +93,15 @@ export class AddTaskComponent implements OnInit{
     }
 
     this.resetForm();
+    this.toggleAddTask();
   }
 
   resetForm() {
-  this.text = '';
-  this.day = '';
-  this.time = '';
-  this.priority = 'low';
-  this.taskToEdit = null;
-}
+    this.text = '';
+    this.day = '';
+    this.time = '';
+    this.priority = 'low';
+    this.taskToEdit = null;
+  }
+
 }
