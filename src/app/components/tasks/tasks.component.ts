@@ -15,7 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class TasksComponent {
   tasks: Task[] = [];
   taskToEdit: Task | null = null;
-  sortBy: string = 'dateCreated';
+  sortBy: string = 'dateCreatedDesc';
 
   constructor(private taskService: TaskService, private snackBar: MatSnackBar){}
 
@@ -57,8 +57,8 @@ export class TasksComponent {
   }
 
   addTask(task: Task){
-    this.taskService.addTask(task).subscribe((task) => this.tasks.push(task));
-    this.sortTasks();
+    this.taskService.addTask(task).subscribe((task) => {this.tasks.push(task); this.sortTasks();});
+    
   }
 
   sortTasks(){

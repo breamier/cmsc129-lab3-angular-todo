@@ -1,29 +1,7 @@
-/* .header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.cancel-btn{
+    background-color: black;
 }
 
-[mat-dialog-actions] {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    overflow: hidden;
-} */
-
-.mat-dialog-container {
-    max-width: 400px;
-    width: 100%;
-    overflow: hidden;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-mat-dialog-content {
-    white-space: normal;
-    word-wrap: break-word;
+.delete-btn{
+    background-color: red;
 }

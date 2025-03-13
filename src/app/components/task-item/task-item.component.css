@@ -11,6 +11,14 @@ fa-icon{
     cursor: pointer;
 }
 
+.hint{
+    font-size: 11px;
+    padding-top: 20px;
+    color: gray;
+    font-style: italic;
+    text-align: right;
+}
+
 .task{
     background-color: rgb(255, 254, 254);
     margin: 10px;
@@ -53,7 +61,7 @@ fa-icon{
 
 .subtitle .action{
     color: gray;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .subtitle fa-icon{
